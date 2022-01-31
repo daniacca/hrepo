@@ -10,11 +10,7 @@ on:
 
 jobs:
   build:
-    env:
-      NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
@@ -24,3 +20,24 @@ jobs:
         with:
           dotnet-version: "5.0.x"
       - run: dotnet build --configuration Release
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+			    mongodb-version: ["4.4"]
+      - run: dotnet test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    env:
+      NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
+    
+    steps:
+      - run: echo "test"
+    
