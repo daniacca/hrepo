@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRepo.NoSql.MongoDb.Abstraction", "HRepo.NoSql.MongoDb.Abstraction\HRepo.NoSql.MongoDb.Abstraction.csproj", "{76E97093-E7A2-43E6-BDAD-8A1F7125C234}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRepo.NoSql.MongoDb", "HRepo.NoSql.MongoDb\HRepo.NoSql.MongoDb.csproj", "{ADEC0395-4654-4A9F-848B-FD2769D703DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRepo.NoSql.MongoDb.Tests", "HRepo.NoSql.MongoDb.Tests\HRepo.NoSql.MongoDb.Tests.csproj", "{5F536EF0-57BF-4514-9F9A-BFBEE9625DF0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76E97093-E7A2-43E6-BDAD-8A1F7125C234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E97093-E7A2-43E6-BDAD-8A1F7125C234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E97093-E7A2-43E6-BDAD-8A1F7125C234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E97093-E7A2-43E6-BDAD-8A1F7125C234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADEC0395-4654-4A9F-848B-FD2769D703DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADEC0395-4654-4A9F-848B-FD2769D703DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADEC0395-4654-4A9F-848B-FD2769D703DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADEC0395-4654-4A9F-848B-FD2769D703DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F536EF0-57BF-4514-9F9A-BFBEE9625DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F536EF0-57BF-4514-9F9A-BFBEE9625DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F536EF0-57BF-4514-9F9A-BFBEE9625DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F536EF0-57BF-4514-9F9A-BFBEE9625DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE2FC13E-895F-4865-B7F3-2001E938150D}
+	EndGlobalSection
+EndGlobal
