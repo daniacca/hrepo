@@ -55,7 +55,7 @@ jobs:
       - name: Download builded package
         uses: actions/download-artifact@v2
         with:
-          name: homework
+          name: nugetPkg
 
       - name: Publish on nuget.org
         run: dotnet nuget push *.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
