@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
           with:
             name: nugetPkg
-            path: ./HRepo.NoSql.MongoDb/bin/Release/HRepo.NoSql.MongoDb.nupkg
+            path: HRepo.NoSql.MongoDb/bin/Release/HRepo.NoSql.MongoDb.nupkg
 
   deploy:
     needs: build
