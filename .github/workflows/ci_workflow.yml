@@ -19,24 +19,43 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "5.0.x"
-      - run: dotnet build --configuration Release
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
+      - name: Restore
+        run: dotnet Restore
 
-    steps:
-      - name: Start MongoDB
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Start MongoDB for testing
         uses: supercharge/mongodb-github-action@1.7.0
         with:
           mongodb-version: latest
-      - run: dotnet test
+
+      - name: Test
+        run: dotnet test
+
+      - name: Upload pkg artifact
+        uses: actions/upload-artifact@v2
+          with:
+            name: nugetPkg
+            path: ./HRepo.NoSql.MongoDb/bin/Release/HRepo.NoSql.MongoDb.nupkg
 
   deploy:
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     env:
       NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
 
     steps:
-      - run: echo "test"
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "5.0.x"
+
+      - name: Download builded package
+        uses: actions/download-artifact@v2
+        with:
+          name: homework
+
+      - name: Publish on nuget.org
+        run: dotnet nuget push *.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
