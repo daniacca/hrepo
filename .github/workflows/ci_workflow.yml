@@ -24,15 +24,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release
-
-      - name: Start MongoDB for testing
-        uses: supercharge/mongodb-github-action@1.7.0
-        with:
-          mongodb-version: latest
-
-      - name: Test
-        run: dotnet test
+        run: dotnet build --configuration Release --norestore
 
       - name: Upload pkg artifact
         uses: actions/upload-artifact@v2
@@ -40,8 +32,41 @@ jobs:
           name: nugetPkg
           path: HRepo.NoSql.MongoDb/bin/Release/*.nupkg
 
+test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "5.0.x"
+
+      - name: Install dotnet tools
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+      - name: Start MongoDB for testing
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: latest
+
+      - name: Execute Test
+        run: dotnet test --collect:"XPlat Code Coverage" --verbosity minimal --logger html --results-directory ./TestResult
+
+      - name: Generate test report
+        run: reportgenerator "-reports:**/*.xml" "-targetdir:./TestReport" -reporttypes:Html
+
+      - name: Upload pkg artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Report
+          path: |
+            TestResult
+            TestReport
+
   deploy:
-    needs: build
+    needs: [build, test]
     runs-on: ubuntu-latest
     env:
       NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
