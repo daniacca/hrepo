@@ -62,8 +62,8 @@ test:
         with:
           name: Report
           path: |
-            TestResult
-            TestReport
+            TestResult/
+            TestReport/
 
   deploy:
     needs: [build, test]
