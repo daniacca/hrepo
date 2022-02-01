@@ -32,7 +32,7 @@ jobs:
           name: nugetPkg
           path: HRepo.NoSql.MongoDb/bin/Release/*.nupkg
 
-test:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
@@ -64,7 +64,6 @@ test:
           path: |
             TestResult/
             TestReport/
-
   deploy:
     needs: [build, test]
     runs-on: ubuntu-latest
