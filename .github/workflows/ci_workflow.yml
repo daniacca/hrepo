@@ -83,4 +83,4 @@ jobs:
           name: nugetPkg
 
       - name: Publish on nuget.org
-        run: dotnet nuget push *.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+        run: dotnet nuget push *.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
