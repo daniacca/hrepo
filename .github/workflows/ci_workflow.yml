@@ -24,7 +24,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release --norestore
+        run: dotnet build --configuration Release
 
       - name: Upload pkg artifact
         uses: actions/upload-artifact@v2
@@ -64,6 +64,7 @@ jobs:
           path: |
             TestResult/
             TestReport/
+
   deploy:
     needs: [build, test]
     runs-on: ubuntu-latest
